@@ -2,8 +2,8 @@ package process;
 
 public class Nodo {
 private int key, altura_; 
-String pid;
-float time;
+private String pid;
+private float time;
 
       
  Nodo izq,der;

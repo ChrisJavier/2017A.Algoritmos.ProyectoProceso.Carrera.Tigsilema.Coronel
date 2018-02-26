@@ -1,13 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package process;
+
+
+import process.Nodo;
+import process.Process;
 
 public class ArbolAVL  {
       private Nodo raiz;
       private Nodo temp=null; 
+    private Object txtArea;
       //boolean mayor=false;
     // metodo para obtener la altura del arbol
    private int altura(Nodo N)
@@ -263,7 +263,40 @@ public class ArbolAVL  {
     
     }
     
-    public Nodo getMasPrioritario(Nodo root){
+    
+    public Nodo masPrioritario(){
+      Nodo temp1= null; 
+      if(raiz.der ==null && raiz.izq==null){
+
+           temp1  = raiz; 
+            raiz= null;
+            return temp1;
+      
+      }else if(raiz.izq!=null && raiz.der==null){
+      temp1 = raiz;
+      raiz = temp1 .izq;
+      raiz.izq = null;  
+     return temp1; 
+    }else if(raiz.izq==null && raiz.der!=null){
+      temp1 = raiz.der; 
+      raiz.der = null; 
+      return temp1; 
+
+}else if(raiz.der.izq==null && raiz.der.der ==null && raiz.izq.izq==null && raiz.izq.der==null){
+    
+     temp1= raiz.der; 
+      raiz.der = null; 
+     return temp1;
+}else{
+
+  return getMasPrioritario(this.raiz); 
+}   
+    
+    
+    }
+    
+    
+    Nodo getMasPrioritario(Nodo root){
         
         
         
@@ -305,22 +338,24 @@ public class ArbolAVL  {
         return raiz;
     }
    
-    public String imprimirInorder(){
-       return Inorder(this.raiz);
+    public void imprimirInorder(){
+            Inorder(this.raiz);
     
     }
     
     
-    private String Inorder(Nodo raiz){
-        if(raiz!=null){
-          String mss ="";
-          Inorder(raiz.izq); 
-          mss =raiz.getPID()+ " Prioridad : "+ raiz.getKey() + "\n ";
-          Inorder(raiz.der);
-          return mss;
+      @SuppressWarnings("empty-statement")
+    public void Inorder(Nodo raiz){
         
+        if(raiz!=null){
+          
+          Inorder(raiz.izq); 
+          System.out.print(raiz.getKey() + " ");
+          Inorder(raiz.der);
+        
+          
         }
-          return null;
+        
     }
     
 }

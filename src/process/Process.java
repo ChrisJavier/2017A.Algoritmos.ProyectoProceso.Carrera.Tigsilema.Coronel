@@ -5,6 +5,10 @@
  */
 package process;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
@@ -29,7 +33,6 @@ public class Process extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btmView = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btmStart = new javax.swing.JButton();
         btmStop = new javax.swing.JButton();
@@ -38,8 +41,7 @@ public class Process extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btmView.setText("View Process");
-
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("PROCESS PROGRAM");
 
         btmStart.setText("Start");
@@ -75,38 +77,30 @@ public class Process extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btmStop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btmStart, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                .addComponent(btmView, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addGap(44, 44, 44)
+                .addComponent(btmStart, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addComponent(btmStop, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(132, 132, 132)
+                .addComponent(jScrollPane1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(154, 154, 154))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(btmStart, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btmStop, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btmView, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btmStop, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(btmStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -117,7 +111,7 @@ public class Process extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,13 +137,12 @@ public class Process extends javax.swing.JFrame {
     }//GEN-LAST:event_btmStopActionPerformed
 
     private void btmStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmStartMouseClicked
-        // TODO add your handling code here:
-        int count =0;
-            while (true) {
-            if(off==true)
-                break;
-            ArbolBB(count);
-            count++;
+        try {
+            // TODO add your handling code here:
+
+            ArbolBB(Integer.parseInt(JOptionPane.showInputDialog("Ingrese cuantos proceso desea realizar")));
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Process.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btmStartMouseClicked
 
@@ -159,18 +152,46 @@ public class Process extends javax.swing.JFrame {
     }//GEN-LAST:event_btmStopMouseClicked
 
     //***************************************************************START*******************************************************+
-    void ArbolBB(int c){
+    void ArbolBB(int n) throws InterruptedException{
         ArbolAVL tree = new ArbolAVL();
-        if(c==0)
-            txtArea.append("*****************CREANDO PROCESOS*********************\n");
-        /* Constructing tree given in the above figure */
-        tree.insertarProceso(PID(), Priori(), Xtime());
-      
-        txtArea.append("->Nuevo proceso :"+tree.imprimirInorder());
+        
+        int count =0, priori=0;
+        String pid="";
+        float time=0;
+            while (count <n) {
+            
+            if(off==true)
+                break;
+           
+            if(count<=8){
+                if(count==0)
+                    txtArea.append("*****************CREANDO PROCESOS*********************\n");
+                
+                pid=PID();
+                priori=Priori();
+                time=Xtime();
+                
+                txtArea.append("-> "+(count)+" | Estado (nuevo)| Proceso :"+pid+ "| Prioridad : "+ priori+ "| Tiempo E. :"+time+"| \n ");
+                tree.insertarProceso(pid,priori,time);
+                
+                //Thread.sleep(2000);
+            }else{
+               
+                tree.insertarProceso(PID(),Priori(), Xtime());
+                txtArea.append("->  "+count+" | Estado (nuevo) | Proceso :"+pid+ "| Prioridad : "+ priori+ "| Tiempo E. :"+time+"|\n ");
+                Nodo prior = tree.getMasPrioritario(tree.getRaiz()); 
+                txtArea.append("---->| Estado (listo)| Proceso : "+prior.getPID()+"| Prioridad : "+prior.getKey()+ "| Tiempo E. :"+ prior.getTime()+"| \n");
+                tree.imprimirMasPrioritario();
+                System.out.println("INorder");
+                tree.imprimirInorder();
+                txtArea.append("---->| Estado (ejecutando)| Proceso : "+prior.getPID()+"| Prioridad : "+prior.getKey()+ "| Tiempo E. :"+ prior.getTime()+"| \n");
+                txtArea.append("---->| Estado (terminado)| Proceso : "+prior.getPID()+"| Prioridad : "+prior.getKey()+ "| Tiempo E. :"+ prior.getTime()+"| \n");
+                
+                prioridad(tree);
+            }
  
-       if(c>=8)
-           prioridad(tree);
- 
+            count++;
+        }
         /* The AVL Tree after deletion of 10
            1
           /  \
@@ -199,18 +220,11 @@ public class Process extends javax.swing.JFrame {
     }
     public void prioridad(ArbolAVL tree){
         
-       Nodo prior = tree.getMasPrioritario(tree.getRaiz()); 
-       System.out.println("nodo mas prioritario ");
-       System.out.println(prior.getKey()); 
        
        System.out.println("tranversal ");
-       
-        System.out.println("\n");
-       tree.imprimirMasPrioritario();
        System.out.println("\n");
-       tree.imprimirInorder();
-       System.out.println("nodo prioritario2 "); 
        
+       System.out.println("\n");
        tree.limpiarTemp();
        tree.actualizarFlag();
        Nodo prior2= tree.getMasPrioritario(tree.getRaiz());
@@ -218,15 +232,21 @@ public class Process extends javax.swing.JFrame {
        tree.imprimirMasPrioritario();
 
     }
+    
+    
     public static String PID(){
-    return String.valueOf((int) (Math.random() * 2000 + 1));
+    return String.valueOf((int) (Math.random()*2000+1) + (int) (Math.random()*2000+1) );
     }
     public static int Priori() {
-      return ((int) (Math.random() * 100 + 1));
+      return ((int) (Math.random()*100) + (int) (Math.random()*100));
     }
     public static float Xtime(){
-      return (float) (Math.random() * 15 + 1); 
+      return (float) (Math.random()*20 + (int) (Math.random()*100)); 
     }
+
+
+
+    
     /**
      * @param args the command line arguments
      */
@@ -266,10 +286,9 @@ public class Process extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btmStart;
     private javax.swing.JButton btmStop;
-    private javax.swing.JButton btmView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtArea;
+    public javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }
